@@ -50,7 +50,7 @@ def register():
     return render_template('register.html')
 
 
-@app.route('/stress-test')
+@app.route('/stress_test')
 def stress_test():
     return render_template('stress_test.html')
 
