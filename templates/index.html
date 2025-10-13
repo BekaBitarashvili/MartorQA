@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MartorQA - Network Testing Platform</title>
+    <link rel="stylesheet" href="static/css/style.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="menu-icon" id="menuIcon">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="logo" data-en="MartorQA" data-ka="მარტორქა">MartorQA</div>
+        <div class="language-switcher">
+            <button class="lang-btn active" data-lang="en">EN</button>
+            <button class="lang-btn" data-lang="ka">KA</button>
+        </div>
+    </header>
+
+    <!-- Sidebar Navigation -->
+    <nav class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="sidebar-title" data-en="MartorQA" data-ka="მარტორქა">MartorQA</div>
+            <div class="sidebar-subtitle" data-en="Global Testing Network" data-ka="გლობალური ტესტირების ქსელი">Global Testing Network</div>
+        </div>
+        <div class="nav-section">
+            <div class="nav-title" data-en="Navigation" data-ka="ნავიგაცია">Navigation</div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="#" class="nav-link new-request">
+                        <span class="nav-icon">+</span>
+                        <span data-en="Automation" data-ka="ავტომატიზაცია">Automation</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <span class="nav-icon">🌐</span>
+                        <span data-en="Health Testing" data-ka="ჯანმრთელობის ტესტი">Health Testing</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <span class="nav-icon">⚡</span>
+                        <span data-en="Performance Testing" data-ka="შესრულების ტესტი">Performance Testing</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <span class="nav-icon">🔧</span>
+                        <span data-en="Stress Testing" data-ka="სტრესის ტესტი">Stress Testing</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <span class="nav-icon">ℹ️</span>
+                        <span data-en="About" data-ka="შესახებ">About</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <span class="nav-icon">👤</span>
+                        <span data-en="Profile" data-ka="პროფილი">Profile</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Animated Background -->
+        <div class="animated-bg" id="animatedBg"></div>
+
+        <div class="content-wrapper">
+            <div class="hero-section">
+                <h1 class="hero-title" data-en="What can I check for you?" data-ka="რას შემიძლია შემოწმდეს ოთხი?">What can I check for you?</h1>
+
+                <div class="search-container">
+                    <input type="text" class="search-input" data-en-placeholder="Enter URL or service to test..." data-ka-placeholder="შეიყვანეთ URL ან სერვისი ტესტისთვის...">
+                    <button class="search-btn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M19 14l-7-7-7 7"></path>
+                        </svg>
+                    </button>
+                </div>
+
+<!--                <div class="quick-actions">-->
+<!--                    <div class="action-card" data-en-title="Health Check" data-ka-title="ჯანმრთელობის შემოწმება">-->
+<!--                        <div class="action-icon">🏥</div>-->
+<!--                        <h3 data-en="Health Check" data-ka="ჯანმრთელობის შემოწმება">Health Check</h3>-->
+<!--                        <p data-en="Monitor service availability and response times" data-ka="მონიტორინგი სერვისის ხელმისაწვდომობისა და რეაგირების დროის">Monitor service availability and response times</p>-->
+<!--                    </div>-->
+
+<!--                    <div class="action-card" data-en-title="Performance Test" data-ka-title="შესრულების ტესტი">-->
+<!--                        <div class="action-icon">🚀</div>-->
+<!--                        <h3 data-en="Performance Test" data-ka="შესრულების ტესტი">Performance Test</h3>-->
+<!--                        <p data-en="Analyze load times and optimization opportunities" data-ka="გაანალიზეთ ჩატვირთვის დრო და ოპტიმიზაციის შესაძლებლობები">Analyze load times and optimization opportunities</p>-->
+<!--                    </div>-->
+
+<!--                    <div class="action-card" data-en-title="Stress Test" data-ka-title="სტრესის ტესტი">-->
+<!--                        <div class="action-icon">⚡</div>-->
+<!--                        <h3 data-en="Stress Test" data-ka="სტრესის ტესტი">Stress Test</h3>-->
+<!--                        <p data-en="Test system limits under high load conditions" data-ka="სისტემის ლიმიტების ტესტირება მაღალი დატვირთვის პირობებში">Test system limits under high load conditions</p>-->
+<!--                    </div>-->
+<!--                </div>-->
+
+<!--                <div class="stats-section">-->
+<!--                    <div class="stat-item">-->
+<!--                        <div class="stat-number">1,245</div>-->
+<!--                        <div class="stat-label" data-en="Active Tests" data-ka="აქტიური ტესტები">Active Tests</div>-->
+<!--                    </div>-->
+<!--                    <div class="stat-item">-->
+<!--                        <div class="stat-number">99.9%</div>-->
+<!--                        <div class="stat-label" data-en="Uptime" data-ka="აქტივობის დრო">Uptime</div>-->
+<!--                    </div>-->
+<!--                    <div class="stat-item">-->
+<!--                        <div class="stat-number">24/7</div>-->
+<!--                        <div class="stat-label" data-en="Monitoring" data-ka="მონიტორინგი">Monitoring</div>-->
+<!--                    </div>-->
+<!--                </div>-->
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2025 Sinkium Network. <span data-en="All rights reserved." data-ka="ყველა უფლება დაცულია.">All rights reserved.</span> | <span data-en="Built with innovation" data-ka="შექმნილია ინოვაციით">Built with innovation</span></p>
+        </div>
+    </footer>
+
+    <!-- Sidebar Overlay -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <script src="static/js/main.js"></script>
+</body>
+</html>
