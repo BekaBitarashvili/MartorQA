@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stress Testing - MartorQA</title>
+    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="stylesheet" href="static/css/stress_test.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="menu-icon" id="menuIcon">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="logo">MartorQA</div>
+        <div class="language-switcher">
+            <button class="lang-btn active" data-lang="en">EN</button>
+            <button class="lang-btn" data-lang="ka">KA</button>
+        </div>
+    </header>
+
+    <!-- Sidebar Navigation -->
+    <nav class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="sidebar-title">MartorQA</div>
+            <div class="sidebar-subtitle">Global Testing Network</div>
+        </div>
+        <div class="nav-section">
+            <div class="nav-title">Navigation</div>
+            <ul class="nav-menu">
+                <li class="nav-item">
+                    <a href="/" class="nav-link">
+                        <span class="nav-icon">🏠</span>
+                        <span>Home</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="/stress-test" class="nav-link new-request">
+                        <span class="nav-icon">🔧</span>
+                        <span>Stress Testing</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <span class="nav-icon">⚡</span>
+                        <span>Performance Testing</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <span class="nav-icon">🌐</span>
+                        <span>Health Testing</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <span class="nav-icon">ℹ️</span>
+                        <span>About</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <span class="nav-icon">👤</span>
+                        <span>Profile</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="animated-bg" id="animatedBg"></div>
+
+        <div class="content-wrapper">
+            <div class="stress-test-container">
+                <h1 class="page-title">Stress Testing Dashboard</h1>
+
+                <!-- Configuration Panel -->
+                <div class="config-panel">
+                    <div class="panel-header">
+                        <h2>Test Configuration</h2>
+                        <div class="status-indicator" id="statusIndicator">
+                            <span class="status-dot"></span>
+                            <span class="status-text">Ready</span>
+                        </div>
+                    </div>
+
+                    <div class="config-form">
+                        <div class="form-group">
+                            <label for="targetUrl">Target URL</label>
+                            <input type="text" id="targetUrl" placeholder="https://example.com" value="https://httpbin.org/delay/1">
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="numUsers">Number of Users</label>
+                                <input type="number" id="numUsers" value="10" min="1" max="1000">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="duration">Duration (seconds)</label>
+                                <input type="number" id="duration" value="30" min="5" max="3600">
+                            </div>
+                        </div>
+
+                        <div class="control-buttons">
+                            <button class="btn btn-primary" id="startBtn">
+                                <span class="btn-icon">▶</span>
+                                Start Test
+                            </button>
+                            <button class="btn btn-warning" id="pauseBtn" disabled>
+                                <span class="btn-icon">⏸</span>
+                                Pause
+                            </button>
+                            <button class="btn btn-danger" id="stopBtn" disabled>
+                                <span class="btn-icon">⏹</span>
+                                Stop
+                            </button>
+                            <button class="btn btn-success" id="downloadBtn" disabled>
+                                <span class="btn-icon">📥</span>
+                                Download Report
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stats Cards -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-icon">📊</div>
+                        <div class="stat-content">
+                            <div class="stat-value" id="totalRequests">0</div>
+                            <div class="stat-label">Total Requests</div>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon">✅</div>
+                        <div class="stat-content">
+                            <div class="stat-value" id="successfulRequests">0</div>
+                            <div class="stat-label">Successful</div>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon">❌</div>
+                        <div class="stat-content">
+                            <div class="stat-value" id="failedRequests">0</div>
+                            <div class="stat-label">Failed</div>
+                        </div>
+                    </div>
+
+                    <div class="stat-card">
+                        <div class="stat-icon">⏱️</div>
+                        <div class="stat-content">
+                            <div class="stat-value" id="avgResponseTime">0ms</div>
+                            <div class="stat-label">Avg Response Time</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Charts -->
+                <div class="charts-container">
+                    <div class="chart-card">
+                        <h3>Response Time Over Time</h3>
+                        <canvas id="responseTimeChart"></canvas>
+                    </div>
+
+                    <div class="chart-card">
+                        <h3>Request Success Rate</h3>
+                        <canvas id="successRateChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Progress Bar -->
+                <div class="progress-container" id="progressContainer" style="display: none;">
+                    <div class="progress-header">
+                        <span>Test Progress</span>
+                        <span id="progressPercent">0%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                    <div class="progress-time">
+                        <span>Elapsed: <span id="elapsedTime">0s</span></span>
+                        <span>Remaining: <span id="remainingTime">0s</span></span>
+                    </div>
+                </div>
+
+                <!-- Live Log -->
+                <div class="log-container">
+                    <div class="log-header">
+                        <h3>Live Activity Log</h3>
+                        <button class="btn-clear" id="clearLogBtn">Clear</button>
+                    </div>
+                    <div class="log-content" id="logContent">
+                        <div class="log-entry log-info">System ready. Configure test parameters and click Start Test.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2025 MartorQA. All rights reserved. | Built with innovation</p>
+        </div>
+    </footer>
+
+    <!-- Sidebar Overlay -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <script src="static/js/main.js"></script>
+    <script src="static/js/stress_test.js"></script>
+</body>
+</html>
