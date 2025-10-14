@@ -465,6 +465,29 @@
     background: linear-gradient(135deg, #f7931e, #ff6b35);
 }
 
+/* URL Suggestions */
+.url-suggestions {
+    margin-top: 8px;
+}
+
+.url-btn {
+    background: rgba(255, 107, 53, 0.2);
+    border: 1px solid rgba(255, 107, 53, 0.3);
+    color: #ff6b35;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 12px;
+    cursor: pointer;
+    margin-right: 8px;
+    transition: all 0.3s ease;
+}
+
+.url-btn:hover {
+    background: rgba(255, 107, 53, 0.3);
+    border-color: #ff6b35;
+    transform: translateY(-2px);
+}
+
 /* Responsive Design */
 @media (max-width: 768px) {
     .stress-test-container {

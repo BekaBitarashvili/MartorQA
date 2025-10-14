@@ -242,32 +242,68 @@ def run_stress_test(config):
     async def make_request(session, url, user_id):
         start_time = time.time()
         try:
-            async with session.get(url, timeout=aiohttp.ClientTimeout(total=30)) as response:
+            # Add headers to mimic real browser
+            headers = {
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+                'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+                'Accept-Language': 'en-US,en;q=0.5',
+                'Accept-Encoding': 'gzip, deflate, br',
+                'Connection': 'keep-alive',
+                'Upgrade-Insecure-Requests': '1',
+                'Sec-Fetch-Dest': 'document',
+                'Sec-Fetch-Mode': 'navigate',
+                'Sec-Fetch-Site': 'none',
+                'Cache-Control': 'max-age=0'
+            }
+
+            async with session.get(
+                    url,
+                    headers=headers,
+                    timeout=aiohttp.ClientTimeout(total=30),
+                    allow_redirects=True,
+                    ssl=False  # Disable SSL verification for testing
+            ) as response:
+                # Read response body to complete the request
+                await response.read()
                 response_time = (time.time() - start_time) * 1000  # Convert to ms
 
                 test_stats['total_requests'] += 1
                 test_stats['response_times'].append(response_time)
                 test_stats['timestamps'].append(time.time())
 
-                if response.status == 200:
+                if 200 <= response.status < 400:
                     test_stats['successful_requests'] += 1
                 else:
                     test_stats['failed_requests'] += 1
                     test_stats['errors'].append(f"User {user_id}: HTTP {response.status}")
 
                 return response_time
+        except asyncio.TimeoutError:
+            response_time = (time.time() - start_time) * 1000
+            test_stats['total_requests'] += 1
+            test_stats['failed_requests'] += 1
+            test_stats['errors'].append(f"User {user_id}: Timeout after {response_time:.0f}ms")
+            return None
+        except aiohttp.ClientConnectorError as e:
+            test_stats['total_requests'] += 1
+            test_stats['failed_requests'] += 1
+            test_stats['errors'].append(f"User {user_id}: Connection Error - {str(e)[:50]}")
+            return None
         except Exception as e:
             test_stats['total_requests'] += 1
             test_stats['failed_requests'] += 1
-            test_stats['errors'].append(f"User {user_id}: {str(e)}")
+            test_stats['errors'].append(f"User {user_id}: {str(e)[:100]}")
             return None
 
     async def user_simulation(session, url, user_id, duration):
         end_time = time.time() + duration
+        request_count = 0
         while time.time() < end_time and test_status['running']:
             if not test_status['paused']:
                 await make_request(session, url, user_id)
-                await asyncio.sleep(1)  # Wait between requests
+                request_count += 1
+                # Add small delay between requests (0.5-2 seconds)
+                await asyncio.sleep(1 + (user_id % 10) * 0.1)  # Stagger requests
             else:
                 await asyncio.sleep(0.5)
 
@@ -276,14 +312,20 @@ def run_stress_test(config):
         num_users = config['users']
         duration = config['duration']
 
-        async with aiohttp.ClientSession() as session:
+        # Create connector with SSL disabled
+        connector = aiohttp.TCPConnector(ssl=False, limit=100, limit_per_host=30)
+
+        async with aiohttp.ClientSession(connector=connector) as session:
             tasks = []
+            ramp_up_delay = config.get('ramp_up', 5) / num_users if num_users > 0 else 0
+
             for i in range(num_users):
                 task = asyncio.create_task(user_simulation(session, url, i, duration))
                 tasks.append(task)
-                await asyncio.sleep(config.get('ramp_up', 5) / num_users)  # Ramp-up time
+                # Gradual ramp-up to avoid overwhelming the server
+                await asyncio.sleep(ramp_up_delay)
 
-            await asyncio.gather(*tasks)
+            await asyncio.gather(*tasks, return_exceptions=True)
 
         test_status['running'] = False
 

@@ -93,7 +93,15 @@
                     <div class="config-form">
                         <div class="form-group">
                             <label for="targetUrl">Target URL</label>
-                            <input type="text" id="targetUrl" placeholder="https://example.com" value="https://httpbin.org/delay/1">
+                            <input type="text" id="targetUrl" placeholder="https://example.com" value="https://httpbin.org/delay/0.5">
+                            <div class="url-suggestions">
+                                <small style="color: rgba(255,255,255,0.5); margin-top: 5px; display: block;">
+                                    💡 Try these test URLs:
+                                    <button class="url-btn" onclick="document.getElementById('targetUrl').value='https://httpbin.org/delay/0.5'">httpbin.org</button>
+                                    <button class="url-btn" onclick="document.getElementById('targetUrl').value='https://jsonplaceholder.typicode.com/posts'">jsonplaceholder</button>
+                                    <button class="url-btn" onclick="document.getElementById('targetUrl').value='https://example.com'">example.com</button>
+                                </small>
+                            </div>
                         </div>
 
                         <div class="form-row">
