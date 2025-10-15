@@ -63,7 +63,7 @@ const animatedBg = document.getElementById('animatedBg');
 let currentLanguage = 'en';
 
 // Initialize the application
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     initializeAnimations();
     initializeEventListeners();
     createFloatingDots();
@@ -261,9 +261,9 @@ function createFloatingDot() {
 // Counter animation
 function animateCounters() {
     const counters = [
-        { element: document.querySelector('.stat-number'), target: 1245 },
-        { element: document.querySelectorAll('.stat-number')[1], target: 99.9, suffix: '%' },
-        { element: document.querySelectorAll('.stat-number')[2], target: 24, suffix: '/7' }
+        {element: document.querySelector('.stat-number'), target: 1245},
+        {element: document.querySelectorAll('.stat-number')[1], target: 99.9, suffix: '%'},
+        {element: document.querySelectorAll('.stat-number')[2], target: 24, suffix: '/7'}
     ];
 
     counters.forEach((counter, index) => {
@@ -360,7 +360,7 @@ function initializeAnimations() {
 // Utility functions
 function throttle(func, limit) {
     let inThrottle;
-    return function() {
+    return function () {
         const args = arguments;
         const context = this;
         if (!inThrottle) {
@@ -390,21 +390,30 @@ function addInteractiveEffects() {
     logo.classList.add('pulse');
 
     // Smooth scroll for navigation links
+    // const navLinks = document.querySelectorAll('.nav-link');
+    // navLinks.forEach(link => {
+    //     link.addEventListener('click', (e) => {
+    //         e.preventDefault();
+    //
+    //         // Add click effect
+    //         link.style.transform = 'translateX(10px) scale(0.95)';
+    //         setTimeout(() => {
+    //             link.style.transform = 'translateX(5px) scale(1)';
+    //         }, 150);
+    //
+    //         // Close sidebar on mobile
+    //         if (window.innerWidth <= 768) {
+    //             setTimeout(closeSidebar, 300);
+    //         }
+    //     });
+    // });
     const navLinks = document.querySelectorAll('.nav-link');
     navLinks.forEach(link => {
-        link.addEventListener('click', (e) => {
-            e.preventDefault();
-
-            // Add click effect
-            link.style.transform = 'translateX(10px) scale(0.95)';
-            setTimeout(() => {
-                link.style.transform = 'translateX(5px) scale(1)';
-            }, 150);
-
-            // Close sidebar on mobile
-            if (window.innerWidth <= 768) {
-                setTimeout(closeSidebar, 300);
-            }
+        link.addEventListener('mouseenter', () => {
+            link.style.transform = 'translateX(5px) scale(1.02)';
+        });
+        link.addEventListener('mouseleave', () => {
+            link.style.transform = 'translateX(0) scale(1)';
         });
     });
 }
