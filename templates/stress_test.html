@@ -9,21 +9,20 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
 </head>
 <body>
-    <!-- Header -->
+
     <header class="header">
         <div class="menu-icon" id="menuIcon">
             <span></span>
             <span></span>
             <span></span>
         </div>
-        <div class="logo">MartorQA</div>
+        <div class="logo" data-en="MartorQA" data-ka="">MartorQA</div>
         <div class="language-switcher">
             <button class="lang-btn active" data-lang="en">EN</button>
             <button class="lang-btn" data-lang="ka">KA</button>
         </div>
     </header>
 
-    <!-- Sidebar Navigation -->
     <nav class="sidebar" id="sidebar">
         <div class="sidebar-header">
             <div class="sidebar-title">MartorQA</div>
@@ -72,46 +71,36 @@
         </div>
     </nav>
 
-    <!-- Main Content -->
     <main class="main-content">
         <div class="animated-bg" id="animatedBg"></div>
 
         <div class="content-wrapper">
             <div class="stress-test-container">
-                <h1 class="page-title">Stress Testing Dashboard</h1>
+                <h1 class="page-title" data-en="Stress Testing Dashboard" data-ka="სტრეს ტესტირების დაფა">Stress Testing Dashboard</h1>
 
-                <!-- Configuration Panel -->
                 <div class="config-panel">
                     <div class="panel-header">
-                        <h2>Test Configuration</h2>
+                        <h2 data-en="Test Configuration" data-ka="ტესტ კონფიგურაცია">Test Configuration</h2>
                         <div class="status-indicator" id="statusIndicator">
                             <span class="status-dot"></span>
-                            <span class="status-text">Ready</span>
+                            <span class="status-text" data-en="Ready" data-ka="მზადაა">Ready</span>
                         </div>
                     </div>
 
                     <div class="config-form">
                         <div class="form-group">
-                            <label for="targetUrl">Target URL</label>
-                            <input type="text" id="targetUrl" placeholder="https://example.com" value="https://httpbin.org/delay/0.5">
-                            <div class="url-suggestions">
-                                <small style="color: rgba(255,255,255,0.5); margin-top: 5px; display: block;">
-                                    💡 Try these test URLs:
-                                    <button class="url-btn" onclick="document.getElementById('targetUrl').value='https://httpbin.org/delay/0.5'">httpbin.org</button>
-                                    <button class="url-btn" onclick="document.getElementById('targetUrl').value='https://jsonplaceholder.typicode.com/posts'">jsonplaceholder</button>
-                                    <button class="url-btn" onclick="document.getElementById('targetUrl').value='https://example.com'">example.com</button>
-                                </small>
-                            </div>
+                            <label for="targetUrl" data-en="Target URL" data-ka="მისამართი">Target URL</label>
+                            <input type="text" id="targetUrl" placeholder="https://example.com" value="">
                         </div>
 
                         <div class="form-row">
                             <div class="form-group">
-                                <label for="numUsers">Number of Users</label>
+                                <label for="numUsers" data-en="Number of Users" data-ka="მომხმარებლების რაოდენობა">Number of Users</label>
                                 <input type="number" id="numUsers" value="10" min="1" max="1000">
                             </div>
 
                             <div class="form-group">
-                                <label for="duration">Duration (seconds)</label>
+                                <label for="duration" data-en="Duration (seconds)" data-ka="ხანგრძლივობა (წამები)">Duration (seconds)</label>
                                 <input type="number" id="duration" value="30" min="5" max="3600">
                             </div>
                         </div>
@@ -143,7 +132,6 @@
                     </div>
                 </div>
 
-                <!-- Stats Cards -->
                 <div class="stats-grid">
                     <div class="stat-card">
                         <div class="stat-icon">
@@ -153,7 +141,7 @@
                         </div>
                         <div class="stat-content">
                             <div class="stat-value" id="totalRequests">0</div>
-                            <div class="stat-label">Total Requests</div>
+                            <div class="stat-label" data-en="Total Requests" data-ka="ჯამური მოთხოვნები">Total Requests</div>
                         </div>
                     </div>
 
@@ -166,7 +154,7 @@
                         </div>
                         <div class="stat-content">
                             <div class="stat-value" id="successfulRequests">0</div>
-                            <div class="stat-label">Successful</div>
+                            <div class="stat-label" data-en="Successful" data-ka="წარმატებული">Successful</div>
                         </div>
                     </div>
 
@@ -180,7 +168,7 @@
                         </div>
                         <div class="stat-content">
                             <div class="stat-value" id="failedRequests">0</div>
-                            <div class="stat-label">Failed</div>
+                            <div class="stat-label" data-en="Failed" data-ka="წარუმატებელი">Failed</div>
                         </div>
                     </div>
 
@@ -193,25 +181,23 @@
                         </div>
                         <div class="stat-content">
                             <div class="stat-value" id="avgResponseTime">0ms</div>
-                            <div class="stat-label">Avg Response Time</div>
+                            <div class="stat-label" data-en="Avg Response Time" data-ka="პასუხის საშუალო დრო">Avg Response Time</div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Charts -->
                 <div class="charts-container">
                     <div class="chart-card">
-                        <h3>Response Time Over Time</h3>
+                        <h3 data-en="Response Time Over Time" data-ka="რეაგირების დრო">Response Time Over Time</h3>
                         <canvas id="responseTimeChart"></canvas>
                     </div>
 
                     <div class="chart-card">
-                        <h3>Request Success Rate</h3>
+                        <h3 data-en="Request Success Rate" data-ka="მოთხოვნის წარმატების პროცენტულობა">Request Success Rate</h3>
                         <canvas id="successRateChart"></canvas>
                     </div>
                 </div>
 
-                <!-- Progress Bar -->
                 <div class="progress-container" id="progressContainer" style="display: none;">
                     <div class="progress-header">
                         <span>Test Progress</span>
@@ -226,11 +212,10 @@
                     </div>
                 </div>
 
-                <!-- Live Log -->
                 <div class="log-container">
                     <div class="log-header">
-                        <h3>Live Activity Log</h3>
-                        <button class="btn-clear" id="clearLogBtn">Clear</button>
+                        <h3 data-en="Live Activity Log" data-ka="აქტივობა ლაივ რეჟიმში">Live Activity Log</h3>
+                        <button class="btn-clear" id="clearLogBtn" data-en="Clear" data-ka="გასუფთავება">Clear</button>
                     </div>
                     <div class="log-content" id="logContent">
                         <div class="log-entry log-info">System ready. Configure test parameters and click Start Test.</div>
@@ -240,14 +225,12 @@
         </div>
     </main>
 
-    <!-- Footer -->
     <footer class="footer">
         <div class="footer-content">
-            <p>&copy; 2025 MartorQA. All rights reserved. | Built with innovation</p>
+            <p>&copy; 2025 MartorQA. <span data-en="All rights reserved." data-ka="ყველა უფლება დაცულია.">All rights reserved.</span> | <span data-en="Built with innovation" data-ka="შექმნილია ინოვაციით">Built with innovation</span></p>
         </div>
     </footer>
 
-    <!-- Sidebar Overlay -->
     <div class="sidebar-overlay" id="sidebarOverlay"></div>
 
     <script src="static/js/main.js"></script>

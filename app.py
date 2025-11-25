@@ -21,7 +21,6 @@ import os
 app = Flask(__name__)
 app.secret_key = 'martorqa_secret_key_2025'
 
-# Global variables for stress testing
 test_results = defaultdict(list)
 test_status = {'running': False, 'paused': False}
 test_config = {}
@@ -38,6 +37,11 @@ test_stats = {
 @app.route('/')
 def index():
     return render_template('index.html')
+
+
+@app.route('/about')
+def about():
+    return render_template('about.html')
 
 
 @app.route('/login')
