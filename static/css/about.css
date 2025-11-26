@@ -205,8 +205,10 @@
 
 .team-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 40px;
+    max-width: 800px;
+    margin: 0 auto;
 }
 
 .team-card {
@@ -270,16 +272,16 @@
 }
 
 .avatar-1::before {
-    content: 'AJ';
+    content: 'BB';
 }
 
 .avatar-2::before {
-    content: 'SC';
+    content: 'LK';
 }
 
-.avatar-3::before {
-    content: 'MR';
-}
+/*.avatar-3::before {*/
+/*    content: 'MR';*/
+/*}*/
 
 .team-info h3 {
     font-size: 1.5rem;
@@ -394,6 +396,7 @@
 
     .team-grid {
         grid-template-columns: 1fr;
+        max-width: 400px;
     }
 
     .cta-buttons {
